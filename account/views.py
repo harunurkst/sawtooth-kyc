@@ -57,29 +57,27 @@ def _get_private_keyfile(key_name):
     return '{}/{}.priv'.format(key_dir, key_name)
 
 
-def create_account(ac_number, name, balance):
-    privkeyfile = _get_private_keyfile(KEY_NAME)
-
-    client = AccountClient(base_url=DEFAULT_URL, key_file=privkeyfile)
-    response = client.create(ac_number, name, balance)
-    print("Response: {}".format(response))
-
-
 class CreateAccount(APIView):
     def post(self, request):
         serializer = AccountSerializer(data=request.data)
         if serializer.is_valid():
             v_data = serializer.validated_data
             v_data["action"] = "create"
-            account_number = serializer.validated_data["account_number"]
-            account_name = serializer.validated_data["account_name"]
-            balance = serializer.validated_data["balance"]
 
-            privkeyfile = _get_private_keyfile(KEY_NAME)
-            client = AccountClient(base_url=DEFAULT_URL, key_file=privkeyfile)
-            #client.test(**v_data)
+            priv_key_file = _get_private_keyfile(KEY_NAME)
+            client = AccountClient(base_url=DEFAULT_URL, key_file=priv_key_file)
+
             response = client.create(**v_data)
             status = yaml.safe_load(response)['data'][0]['status']
             return Response({"data": status})
         return Response(serializer.errors)
+
+
+class CheckAccount(APIView):
+    def get(self, request, account_number):
+        privkeyfile = _get_private_keyfile(KEY_NAME)
+        client = AccountClient(base_url=DEFAULT_URL, key_file=privkeyfile)
+        response = client.check(account_number)
+        print(response)
+        return Response(response)
 

@@ -153,12 +153,12 @@ class AccountClient(object):
         Called by bake() and eat().
         '''
 
-        ac_number = v_data['account_number']
+        nid_number = v_data['nid_number']
         payload = cbor.dumps(v_data)
 
         # Construct the address where we'll store our state.
         # We just have one input and output address (the same one).
-        address = self._get_address(ac_number)
+        address = self._get_address(nid_number)
 
         # Create a TransactionHeader.
         header = TransactionHeader(

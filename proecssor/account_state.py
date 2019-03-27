@@ -19,10 +19,23 @@ def _make_account_address(name):
 
 
 class Account:
-    def __init__(self, account_name, account_number, balance):
-        self.account_name = account_name
-        self.account_number = account_number
-        self.balance = balance
+    def __init__(self, **kwargs):
+        self.account_name = kwargs['account_name']
+        self.account_type = kwargs['account_type']
+        self.account_number = kwargs['account_number']
+        self.created_by = kwargs['created_by']
+        self.business_type = kwargs['business_type']
+        self.fund_source = kwargs['fund_source']
+        self.beneficial_owner_info = kwargs['beneficial_owner_info']
+
+        self.passport_number = kwargs.get('passport_number', '')
+        self.nid_number = kwargs.get('nid_number', '')
+        self.tin_number = kwargs.get('tin_number', '')
+        self.vat_reg_number = kwargs.get('vat_reg_number', '')
+        self.driving_licence_number = kwargs.get('driving_licence_number', '')
+
+        self.occupation = kwargs['occupation']
+        self.comments = kwargs.get('comments', '')
 
     def to_dict(self):
         return self.__dict__
@@ -34,9 +47,9 @@ class AccountState:
 
     def make_account(self, account_obj):
         """
-        Create new account
+        Create new account state
         """
-        account_address = _make_account_address(str(account_obj.account_number))
+        account_address = _make_account_address(account_obj.nid_number)
         LOGGER.info('Got the  account address %s.',
                     account_address)
 

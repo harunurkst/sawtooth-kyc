@@ -54,14 +54,14 @@ class AccountTransactionHandler(TransactionHandler):
 
         content = cbor.loads(transaction.payload)
         action = content.pop("action")
-        ac_number = content["account_number"]
+        nid_number = content["nid_number"]
 
         # Get the signer's public key, sent in the header from the client.
         from_key = header.signer_public_key
 
         # Perform the action.
         LOGGER.info("Action = %s.", action)
-        LOGGER.info("Account Number = %s.", ac_number)
+        LOGGER.info("nid Number = %s.", nid_number)
 
         if action == "create":
             account_obj = Account(**content)

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Global KYC</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Check your Account</h1>
+
+          <form class="form" action="" method="post">
+              {% csrf_token %}
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="NID number" aria-label="Recipient's username" aria-describedby="button-addon2" name="nid_number">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
+                </div>
+              </div>
+          </form>
+
+        {% if nid_number %}
+
+          <div class="row">
+              <h2>KYC info of NID: {{ nid_number }} </h2>
+            <table class="table table-bordered">
+              <tbody>
+                  <tr>
+                    <th>হিসাবের নাম</th>
+                      <td>{{ account_name }}</td>
+                  </tr>
+                  <tr>
+                    <th>হিসাবের ধরণ</th>
+                      <td>{{ account_type }}</td>
+                  </tr>
+                  <tr>
+                    <th>হিসাব বা সুত্র নাম্বার</th>
+                      <td>{{ account_number }}</td>
+                  </tr>
+                  <tr>
+                    <th>হিসাব খোলার কর্মকর্তার নাম</th>
+                      <td>{{ created_by }}</td>
+                  </tr>
+                  <tr>
+                    <th>তহবিলের উৎস</th>
+                      <td>{{ fund_source }}</td>
+                  </tr>
+                  <tr>
+                    <th>হিসাবের প্রকৃত সুবিধাভোগী</th>
+                      <td>{{ beneficial_owner_info }}</td>
+                  </tr>
+                  <tr>
+                    <th>পাসপোর্ট</th>
+                      <td>{{ passport_number }}</td>
+                  </tr>
+                  <tr>
+                    <th>টি আই এন নম্বর</th>
+                      <td>{{ tin_number }}</td>
+                  </tr>
+                  <tr>
+                    <th>ভ্যাট রেজিঃ নম্বর</th>
+                      <td>{{ vat_reg_number }}</td>
+                  </tr>
+                  <tr>
+                    <th>ড্রাইভিং লাইসেন্স নম্বর</th>
+                      <td>{{ driving_licence_number }}</td>
+                  </tr>
+                  <tr>
+                    <th>গ্রাহক কি করেন</th>
+                      <td>{{ occupation }}</td>
+                  </tr>
+                  <tr>
+                    <th>ব্যাবসায়ের ধরণ</th>
+                      <td>{{ business_type }}</td>
+                  </tr>
+                  <tr>
+                    <th>মন্তব্য</th>
+                      <td>{{ comments }}</td>
+                  </tr>
+
+              </tbody>
+          </table>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

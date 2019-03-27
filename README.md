@@ -27,3 +27,10 @@ open new terminal
 ## dependencies
 1. cbor
 `$ pip install cbor`
+
+## decript data
+`$ import base64`  
+`$ bData = '-------'`
+`$ d = base64.b64decode(bData)`  
+`$ import cbor`  
+`$ cbor.loads(d)`
