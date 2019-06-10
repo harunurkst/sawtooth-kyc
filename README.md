@@ -9,7 +9,7 @@ steps: [setup dev environment Ubuntu 16.04](https://sawtooth.hyperledger.org/doc
 ## 3. Generate the root key for the validator
 `$ sudo sawadm keygen`     
 
-##_Do following steps in different terminal window_ 
+## Do following steps in different terminal window_ 
 ## 4. Strart the validator  
 `$ sudo -u sawtooth sawtooth-validator -vv`  
 
